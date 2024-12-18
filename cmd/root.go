@@ -35,13 +35,27 @@ var (
 	showDevices   bool
 	filter        string
 	debug         bool
+	help          bool
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "go-pkg-capture",
 	Short: "Capture packets from a network interface",
-	Long:  `This application captures packets from a network interface and saves them to a file.`,
+	Long: `This application captures packets from a network interface and saves them to a file.
+    Usage: go-pkg-capture [flags]
+
+	Flags:
+	-h, --help: Show help
+	-t, --time: Time to capture packets
+	-d, --device: Device to capture packets
+	-e, --export: Type of export (txt, pcap)
+	-n, --name: Name of the export file
+	-p, --path: Path to save the export file
+	-l, --devices: List all devices
+	-f, --filter: Filter packets (e.g., tcp, udp)
+	-x, --debug: Show debug information
+`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -53,6 +67,10 @@ func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
+	}
+
+	if help {
+		os.Exit(0)
 	}
 
 	var writer *pcapgo.Writer
@@ -189,4 +207,5 @@ func init() {
 	rootCmd.Flags().BoolVarP(&showDevices, "devices", "l", false, "List all devices")
 	rootCmd.Flags().StringVarP(&filter, "filter", "f", "", "Filter packets (e.g., tcp, udp)")
 	rootCmd.Flags().BoolVarP(&debug, "debug", "x", false, "Show debug information")
+	rootCmd.Flags().BoolVarP(&help, "help", "h", false, "Show help")
 }
