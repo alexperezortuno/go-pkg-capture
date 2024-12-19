@@ -150,7 +150,7 @@ func Execute() {
 	// Capture packets
 	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 	if debug {
-		fmt.Printf("Capturando paquetes durante %d segundos...\n", timeToCapture)
+		fmt.Printf("Capturing packets on %s during %d seconds...\n", deviceName, timeToCapture)
 	}
 
 	for {
