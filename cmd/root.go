@@ -198,7 +198,6 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	rootCmd.Flags().IntVarP(&timeToCapture, "time", "t", 10, "Time to capture packets")
 	rootCmd.Flags().StringVarP(&deviceName, "device", "d", "eth0", "Device to capture packets")
 	rootCmd.Flags().StringVarP(&exportType, "export", "e", "", "Type of export (txt, pcap)")
