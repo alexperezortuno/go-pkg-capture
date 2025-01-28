@@ -13,6 +13,12 @@ sudo apt install libpcap-dev
 go build
 ```
 
+### Help
+
+```shell
+./go_capture -h
+```
+
 ### Usage
 
 Show list of available interfaces:
